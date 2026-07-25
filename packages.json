@@ -1,0 +1,54 @@
+[
+  {
+    "id": "PKG-001",
+    "name": "Basic Health Checkup",
+    "mrp": 2500,
+    "offerPrice": 999,
+    "testsIncluded": [
+      "Complete Blood Count (CBC)",
+      "Fasting Blood Sugar",
+      "Lipid Profile Basic",
+      "Kidney Function Test (KFT)",
+      "Urine Routine Analysis"
+    ]
+  },
+  {
+    "id": "PKG-002",
+    "name": "Selfcare Prime Full Body Checkup",
+    "mrp": 4900,
+    "offerPrice": 1799,
+    "testsIncluded": [
+      "Complete Blood Count (CBC)",
+      "HbA1c Diabetes Profile",
+      "Thyroid Profile (T3, T4, TSH)",
+      "Liver Function Test (LFT)",
+      "Kidney Function Test (KFT)",
+      "Lipid Profile Comprehensive",
+      "Vitamin D & B12"
+    ]
+  },
+  {
+    "id": "PKG-003",
+    "name": "Women's Wellness Executive Package",
+    "mrp": 5500,
+    "offerPrice": 2299,
+    "testsIncluded": [
+      "All Prime Full Body Tests",
+      "Iron Deficiency Profile",
+      "Calcium & Bone Density",
+      "Hormone Profile (FSH, LH, Prolactin)"
+    ]
+  },
+  {
+    "id": "PKG-004",
+    "name": "Senior Citizen Complete Care",
+    "mrp": 6200,
+    "offerPrice": 2499,
+    "testsIncluded": [
+      "Comprehensive Cardiac Risk Markers",
+      "Full Body Diagnostic Profile (83 Parameters)",
+      "Arthritis & Inflammation Screening",
+      "HbA1c & Fasting Glucose"
+    ]
+  }
+]

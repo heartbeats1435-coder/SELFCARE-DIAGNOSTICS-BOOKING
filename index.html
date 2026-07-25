@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Selfcare Diagnostics - Empowering Wellness</title>
+  <meta name="description" content="Book 150+ NABL Accredited Blood Tests & Full Body Health Packages with Home Sample Collection." />
+  <meta name="theme-color" content="#00875A" />
+  
+  <!-- PWA & Mobile App Settings -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Selfcare" />
+  <link rel="apple-touch-icon" href="assets/icon-192.png" />
+
+  <!-- Fonts & Stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="light-mode">
+
+  <!-- Splash Screen -->
+  <div id="splash-screen" class="splash-screen">
+    <div class="splash-content">
+      <div class="logo-ring">
+        <div class="logo-circle">
+          <svg viewBox="0 0 24 24" fill="none" class="brand-svg-icon">
+            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7 7-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+      <h1 class="brand-title">SELFCARE</h1>
+      <p class="brand-subtitle">DIAGNOSTICS</p>
+      <span class="tagline">Empowering Wellness</span>
+      <div class="loading-bar"><div class="loading-progress"></div></div>
+    </div>
+  </div>
+
+  <!-- Main Mobile App Shell Container -->
+  <div id="app-container" class="app-container hidden">
+
+    <!-- App Header -->
+    <header class="app-header">
+      <div class="header-top">
+        <div class="user-greeting">
+          <span class="greeting-text" id="greeting-text">Good Morning 👋</span>
+          <h2 class="user-name" id="header-user-name">Guest Patient</h2>
+        </div>
+        <div class="header-actions">
+          <button class="icon-btn" id="theme-toggle-btn" aria-label="Toggle Dark Mode">
+            <span class="icon">🌙</span>
+          </button>
+          <button class="icon-btn notification-btn" id="notif-btn" aria-label="Notifications">
+            <span class="icon">🔔</span>
+            <span class="badge-dot" id="notif-badge"></span>
+          </button>
+          <button class="icon-btn profile-avatar-btn" id="avatar-btn" onclick="appRouter.navigate('profile')" aria-label="Profile">
+            <span class="avatar-initials" id="avatar-initials">GP</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Real-time Global Search -->
+      <div class="search-container">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="global-search-input" placeholder="Search Blood Tests, Packages (e.g. CBC)..." autocomplete="off" />
+        <button class="clear-search hidden" id="clear-search-btn">✕</button>
+      </div>
+    </header>
+
+    <!-- Main Dynamic Router Canvas -->
+    <main class="main-content" id="main-content">
+
+      <!-- VIEW 1: HOME SCREEN -->
+      <section id="view-home" class="app-view active-view">
+        
+        <!-- PWA Installation Prompt -->
+        <div id="pwa-install-banner" class="pwa-banner hidden">
+          <div class="pwa-text">
+            <strong>Install Selfcare Diagnostics App</strong>
+            <p>Faster bookings, offline access & live reports</p>
+          </div>
+          <button id="pwa-install-btn" class="btn-sm btn-accent">Install</button>
+        </div>
+
+        <!-- Quick Action Grid -->
+        <div class="quick-actions-grid">
+          <div class="action-card" onclick="appRouter.navigate('tests')">
+            <div class="action-icon bg-green-light">🧪</div>
+            <span>Book Test</span>
+          </div>
+          <div class="action-card" onclick="appRouter.navigate('packages')">
+            <div class="action-icon bg-pink-light">📦</div>
+            <span>Packages</span>
+          </div>
+          <div class="action-card" onclick="ui.openModal('home-collection-modal')">
+            <div class="action-icon bg-blue-light">🏠</div>
+            <span>Home Sample</span>
+          </div>
+          <div class="action-card" onclick="ui.openModal('upload-prescription-modal')">
+            <div class="action-icon bg-purple-light">📄</div>
+            <span>Prescription</span>
+          </div>
+        </div>
+
+        <!-- Banner Card -->
+        <div class="banner-carousel glass-card">
+          <div class="banner-slide">
+            <div class="banner-tag">POPULAR OFFER</div>
+            <h3>Blood Tests Starting from ₹40</h3>
+            <p>100% Certified Partner Labs • Free Home Pick-up</p>
+            <button class="btn-banner" onclick="appRouter.navigate('tests')">Explore Tests</button>
+          </div>
+        </div>
+
+        <!-- Categories Scroll -->
+        <div class="section-header">
+          <h3>Health Categories</h3>
+          <span class="see-all-link" onclick="appRouter.navigate('tests')">See All</span>
+        </div>
+        <div class="categories-scroll" id="categories-list">
+          <!-- Dynamically Injected -->
+        </div>
+
+        <!-- Popular Diagnostic Tests -->
+        <div class="section-header">
+          <h3>Popular Blood Tests</h3>
+          <span class="see-all-link" onclick="appRouter.navigate('tests')">View All (150+)</span>
+        </div>
+        <div class="tests-grid" id="popular-tests-container">
+          <!-- Dynamically Injected -->
+        </div>
+
+        <!-- Health Packages -->
+        <div class="section-header">
+          <h3>Featured Health Checkups</h3>
+          <span class="see-all-link" onclick="appRouter.navigate('packages')">Explore Packages</span>
+        </div>
+        <div class="packages-scroll" id="popular-packages-container">
+          <!-- Dynamically Injected -->
+        </div>
+      </section>
+
+      <!-- VIEW 2: TESTS CATALOG VIEW -->
+      <section id="view-tests" class="app-view">
+        <div class="section-header">
+          <h3>Diagnostic Tests</h3>
+          <span class="result-count" id="test-count-label">Showing 0 Tests</span>
+        </div>
+        
+        <div class="filter-pills" id="test-category-filters">
+          <!-- Dynamically Injected -->
+        </div>
+
+        <div class="tests-list-vertical" id="all-tests-container">
+          <!-- Dynamically Injected -->
+        </div>
+      </section>
+
+      <!-- VIEW 3: HEALTH PACKAGES CATALOG VIEW -->
+      <section id="view-packages" class="app-view">
+        <div class="section-header">
+          <h3>Full Body Health Packages</h3>
+          <span class="sub-label">Preventive Care Checkups</span>
+        </div>
+        <div class="packages-list-vertical" id="all-packages-container">
+          <!-- Dynamically Injected -->
+        </div>
+      </section>
+
+      <!-- VIEW 4: CART & CHECKOUT VIEW -->
+      <section id="view-cart" class="app-view">
+        <div class="section-header">
+          <h3>My Cart</h3>
+          <button class="btn-text-danger" id="clear-cart-btn" onclick="cart.clearCart()">Clear Cart</button>
+        </div>
+
+        <div id="cart-empty-state" class="empty-state hidden">
+          <div class="empty-icon">🛒</div>
+          <h4>Your Cart is Empty</h4>
+          <p>Add tests or health checkup packages to proceed with sample collection.</p>
+          <button class="btn-primary" onclick="appRouter.navigate('tests')">Browse Tests</button>
+        </div>
+
+        <div id="cart-content-wrapper">
+          <div class="cart-items-list mb-16" id="cart-items-container">
+            <!-- Dynamically Injected -->
+          </div>
+
+          <!-- Coupon Module -->
+          <div class="glass-card coupon-card mb-16">
+            <div class="coupon-row">
+              <input type="text" id="coupon-code-input" placeholder="Enter Coupon Code (e.g. SELFCARE20)" />
+              <button class="btn-secondary" onclick="cart.applyCoupon()">Apply</button>
+            </div>
+            <p id="coupon-msg" class="coupon-msg"></p>
+          </div>
+
+          <!-- Patient Information & Checkout Form -->
+          <div class="glass-card form-card">
+            <h4>Patient & Collection Slot</h4>
+            <form id="checkout-form" onsubmit="booking.processCheckout(event)">
+              <div class="form-group">
+                <label for="patient-name">Full Name *</label>
+                <input type="text" id="patient-name" required placeholder="John Doe" />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="patient-age">Age *</label>
+                  <input type="number" id="patient-age" required min="1" max="120" placeholder="30" />
+                </div>
+                <div class="form-group">
+                  <label for="patient-gender">Gender *</label>
+                  <select id="patient-gender" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="patient-mobile">Mobile Number *</label>
+                  <input type="tel" id="patient-mobile" required pattern="[0-9]{10}" placeholder="7010174890" />
+                </div>
+                <div class="form-group">
+                  <label for="patient-email">Email Address</label>
+                  <input type="email" id="patient-email" placeholder="patient@example.com" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="patient-address">Address for Home Collection *</label>
+                <textarea id="patient-address" required rows="2" placeholder="House/Flat No, Street, Landmark"></textarea>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="patient-pincode">Pincode *</label>
+                  <input type="text" id="patient-pincode" required pattern="[0-9]{6}" placeholder="600001" />
+                </div>
+                <div class="form-group">
+                  <label for="collection-type">Collection Mode</label>
+                  <select id="collection-type">
+                    <option value="Home Collection">Home Collection (Free)</option>
+                    <option value="Visit Center">Visit Diagnostic Center</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="preferred-date">Date *</label>
+                  <input type="date" id="preferred-date" required />
+                </div>
+                <div class="form-group">
+                  <label for="preferred-time">Time Slot *</label>
+                  <select id="preferred-time" required>
+                    <option value="07:00 AM - 09:00 AM">07:00 AM - 09:00 AM</option>
+                    <option value="09:00 AM - 11:00 AM">09:00 AM - 11:00 AM</option>
+                    <option value="11:00 AM - 01:00 PM">11:00 AM - 01:00 PM</option>
+                    <option value="04:00 PM - 06:00 PM">04:00 PM - 06:00 PM</option>
+                  </select>
+                </div>
+              </div>
+              
+              <!-- Total Breakdown -->
+              <div class="bill-summary">
+                <div class="bill-row"><span>Items Subtotal</span><span id="bill-subtotal">₹0</span></div>
+                <div class="bill-row"><span>Discount</span><span id="bill-discount" class="text-green">-₹0</span></div>
+                <div class="bill-row"><span>Sample Pick-up</span><span id="bill-collection" class="text-green">FREE</span></div>
+                <div class="bill-row"><span>Estimated GST (5%)</span><span id="bill-tax">₹0</span></div>
+                <hr style="margin: 8px 0; border: none; border-top: 1px dashed var(--border-color);" />
+                <div class="bill-row total-row"><span>Grand Total</span><span id="bill-total">₹0</span></div>
+              </div>
+
+              <button type="submit" class="btn-primary btn-block btn-lg" id="confirm-booking-btn">Confirm Order via WhatsApp</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 5: BOOKINGS & REPORTS -->
+      <section id="view-bookings" class="app-view">
+        <div class="section-header">
+          <h3>My Bookings & Reports</h3>
+        </div>
+
+        <div class="search-container mb-16">
+          <span class="search-icon">🔎</span>
+          <input type="text" id="booking-search-input" placeholder="Search by Booking ID or Patient..." onkeyup="booking.filterBookings()" />
+        </div>
+
+        <div id="bookings-history-list">
+          <!-- Dynamically Injected -->
+        </div>
+      </section>
+
+      <!-- VIEW 6: USER PROFILE -->
+      <section id="view-profile" class="app-view">
+        <div class="profile-header glass-card text-center mb-16">
+          <div class="profile-avatar" id="profile-avatar-large">GP</div>
+          <h3 id="profile-name">Guest Patient</h3>
+          <p id="profile-phone" class="text-muted">+91 7010174890</p>
+        </div>
+
+        <div class="menu-list glass-card">
+          <div class="menu-item" onclick="appRouter.navigate('bookings')">
+            <span class="menu-icon">📋</span>
+            <span>Booking History & Test Reports</span>
+            <span class="chevron">❯</span>
+          </div>
+          <div class="menu-item" onclick="appRouter.navigate('admin')">
+            <span class="menu-icon">🔐</span>
+            <span>Admin Control Panel</span>
+            <span class="chevron">❯</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 7: INTEGRATED ADMIN PANEL -->
+      <section id="view-admin" class="app-view">
+        <div id="admin-login-wrapper" class="glass-card">
+          <h3>Admin Portal</h3>
+          <form onsubmit="admin.login(event)">
+            <div class="form-group">
+              <label for="admin-passcode">Admin Passcode</label>
+              <input type="password" id="admin-passcode" placeholder="Enter admin123" required />
+            </div>
+            <button type="submit" class="btn-primary btn-block">Login</button>
+          </form>
+        </div>
+
+        <div id="admin-dashboard-wrapper" class="hidden">
+          <div class="section-header">
+            <h3>Admin Dashboard</h3>
+            <button class="btn-sm btn-secondary" onclick="admin.logout()">Logout</button>
+          </div>
+
+          <div class="admin-stats-grid mb-16">
+            <div class="stat-card glass-card text-center">
+              <span class="stat-num" id="stat-bookings-count">0</span>
+              <span class="stat-label">Total Bookings</span>
+            </div>
+            <div class="stat-card glass-card text-center">
+              <span class="stat-num" id="stat-revenue">₹0</span>
+              <span class="stat-label">Total Value</span>
+            </div>
+          </div>
+
+          <div class="admin-actions mb-16">
+            <button class="btn-secondary" onclick="admin.exportExcel()">Export CSV</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Floating WhatsApp CTA -->
+    <a href="https://wa.me/917010174890?text=Hi%20Selfcare%20Diagnostics,%20I%20have%20a%20question%20regarding%20a%20lab%20test." target="_blank" class="floating-whatsapp" aria-label="WhatsApp Support">
+      <svg viewBox="0 0 32 32" class="wa-svg"><path fill="currentColor" d="M16 2a13 13 0 0 0-11 20L3 29l7-2a13 13 0 1 0 6-25zm0 24a11 11 0 0 1-5.6-1.5l-.4-.2-4.1 1.1 1.1-4-.3-.5A11 11 0 1 1 16 26zm6-8c-.3-.2-1.9-1-2.2-1.1s-.5-.2-.7.2-.8 1-.9 1.2-.3.2-.6 0a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.4.1-.6s-.7-1.7-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4A3.7 3.7 0 0 0 8 13.6a6.5 6.5 0 0 0 1.4 3.5 14.8 14.8 0 0 0 5.7 5 19 19 0 0 0 1.9.7 4.6 4.6 0 0 0 2.1.1 3.4 3.4 0 0 0 2.2-1.6 2.8 2.8 0 0 0 .2-1.5c-.1-.1-.3-.2-.6-.3z"/></svg>
+    </a>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+      <button class="nav-item active" data-target="home" onclick="appRouter.navigate('home')">
+        <span class="nav-icon">🏠</span>
+        <span class="nav-label">Home</span>
+      </button>
+      <button class="nav-item" data-target="tests" onclick="appRouter.navigate('tests')">
+        <span class="nav-icon">🧪</span>
+        <span class="nav-label">Tests</span>
+      </button>
+      <button class="nav-item" data-target="packages" onclick="appRouter.navigate('packages')">
+        <span class="nav-icon">📦</span>
+        <span class="nav-label">Packages</span>
+      </button>
+      <button class="nav-item nav-cart" data-target="cart" onclick="appRouter.navigate('cart')">
+        <span class="nav-icon">🛒</span>
+        <span class="nav-label">Cart</span>
+        <span class="cart-badge hidden" id="nav-cart-badge">0</span>
+      </button>
+      <button class="nav-item" data-target="profile" onclick="appRouter.navigate('profile')">
+        <span class="nav-icon">👤</span>
+        <span class="nav-label">Profile</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Modal Component Layer -->
+  <div id="modal-overlay" class="modal-overlay hidden" onclick="ui.closeModals()">
+    <div id="test-detail-modal" class="modal-content glass-card hidden" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="ui.closeModals()">✕</button>
+      <div id="test-detail-body"></div>
+    </div>
+
+    <div id="booking-success-modal" class="modal-content glass-card text-center hidden" onclick="event.stopPropagation()">
+      <div class="success-checkmark">✓</div>
+      <h3>Booking Confirmed!</h3>
+      <p id="success-booking-id" class="booking-id-text">ID: SEL-8921</p>
+      <p class="text-muted mb-16">The booking message has been formatted for WhatsApp dispatch.</p>
+      <div class="modal-actions">
+        <button id="open-whatsapp-btn" class="btn-whatsapp btn-block mb-8">Open WhatsApp</button>
+        <button class="btn-secondary btn-block" onclick="ui.closeModals(); appRouter.navigate('bookings');">View Bookings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main JS Execution File -->
+  <script src="script.js"></script>
+</body>
+</html>

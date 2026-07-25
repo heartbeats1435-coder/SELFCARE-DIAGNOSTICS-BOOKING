@@ -1,0 +1,10 @@
+[
+  { "id": "cat-1", "name": "Diabetes", "icon": "🩸" },
+  { "id": "cat-2", "name": "Thyroid", "icon": "🦋" },
+  { "id": "cat-3", "name": "Heart", "icon": "🫀" },
+  { "id": "cat-4", "name": "Kidney", "icon": "🧪" },
+  { "id": "cat-5", "name": "Liver", "icon": "🍷" },
+  { "id": "cat-6", "name": "Vitamins", "icon": "💊" },
+  { "id": "cat-7", "name": "Women's Health", "icon": "👩" },
+  { "id": "cat-8", "name": "Hormones", "icon": "⚡" }
+]

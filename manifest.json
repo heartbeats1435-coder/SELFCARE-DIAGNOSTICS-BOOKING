@@ -1,0 +1,22 @@
+{
+  "short_name": "Selfcare",
+  "name": "Selfcare Diagnostics - Empowering Wellness",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/index.html",
+  "background_color": "#00875A",
+  "theme_color": "#00875A",
+  "display": "standalone",
+  "orientation": "portrait",
+  "description": "Book NABL Accredited Blood Tests & Health Checkups at Home."
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - Selfcare Diagnostics</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <h2>Selfcare Admin</h2>
+      <nav>
+        <a href="#overview" class="active">Dashboard Overview</a>
+        <a href="#bookings">Bookings Feed</a>
+        <a href="#tests">Test Inventory</a>
+        <a href="#settings">Settings</a>
+      </nav>
+    </aside>
+    <main class="admin-main">
+      <header class="admin-header">
+        <h3>Management Console</h3>
+        <button class="btn-primary" onclick="window.location.href='../index.html'">Back to App</button>
+      </header>
+      <section class="admin-content" id="admin-root">
+        <p>Loading Dashboard Analytics...</p>
+      </section>
+    </main>
+  </div>
+  <script src="admin.js"></script>
+</body>
+</html>

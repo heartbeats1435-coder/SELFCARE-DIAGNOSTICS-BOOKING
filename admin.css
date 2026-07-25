@@ -1,0 +1,50 @@
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: #f1f5f9;
+}
+
+.admin-sidebar {
+  width: 260px;
+  background: #00875A;
+  color: white;
+  padding: 24px 16px;
+}
+
+.admin-sidebar h2 {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.admin-sidebar nav a {
+  display: block;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.admin-sidebar nav a.active {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.admin-main {
+  flex: 1;
+  padding: 24px;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.admin-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
